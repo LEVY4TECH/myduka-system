@@ -122,6 +122,13 @@ insert_data(table,columns,values)
 products=fetch_data('products')
 print("data from last method:\n",products)
 
+table='categories'
+columns='categoryname,description'
+values=('alcoholic drinks','smirn off, hennesy, vodka')
+insert_data(table,columns,values)
+categories=fetch_data('categories')
+print("practising my method:\n",categories)
+
 
 
 
