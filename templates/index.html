@@ -55,6 +55,23 @@
         </div>
     </div>
 
+    {% if data %}
+    <h4>Hello {{data.name}}, please wait vehicle raising</h4>
+    {% else %}
+    <h4>Data not provided</h4>
+    {% endif %}
+
+    {% if data%}
+    <h4>You're in {{data.location}}</h4>
+    {% else %}
+    <h4>Data not provided</h4>
+    {% endif %}
+
+    {% for number in numbers %}
+    <li> {{number}}</li>
+    {% endfor %}
+    
+
 
 
 
