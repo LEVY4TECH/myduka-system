@@ -1,5 +1,6 @@
 # importinf flask to use it
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+from database import fetching_products,fetching_categories,insert_products,insert_categories
 
 # instantiate your application - initialization 
 # flask instance
@@ -18,10 +19,44 @@ def home():
 
 @app.route('/products')
 def products():
-    return render_template ('products.html')
+    products=fetching_products()
+    return render_template ('products.html',products=products)
+
+@app.route('/add_products',methods=['GET','POST'])
+def add_products():
+    if request.method=='POST':
+        supplierID=request.form['SID']
+        categoryID=request.form['CID']
+        productName=request.form['ProductName']
+        unit=request.form['Unit']
+        price=request.form['Price']
+        new_product=(supplierID,categoryID,productName,unit,price)
+        insert_products(new_product)
+        return redirect(url_for('home'))
+
+
 
 @app.route('/categories')
 def categories():
-    return render_template ('categories.html')
+    categories=fetching_categories()
+    # print ("Categories in main\n",categories)
+    return render_template ('categories.html',categories=categories)
+
+@app.route('/add_categories',methods=['GET','POST'])
+def add_categories():
+    if request.method=='POST':
+        categoryID=request.form['CID']
+        categoryname=request.form['CN']
+        description=request.form['Desc']
+        new_category=(categoryname,description)
+        insert_categories(new_category)
+        return redirect(url_for('categories'))
+
+    
+
+@app.route('/task')
+def task():
+    fruits=['pineapple','apple','mango','orange']
+    return render_template('task.html',fruits=fruits)
 
 app.run(debug=True)

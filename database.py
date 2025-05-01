@@ -13,7 +13,7 @@ def fetching_products():
     products=cur.fetchall()
     return products
    
-fetching_products()
+# fetching_products()
 
 
 # # query 2
@@ -21,10 +21,11 @@ def fetching_categories():
     cur.execute('select * from categories;')
 
     categories=cur.fetchall()
-    for category in categories:
-         print(category)
+    return categories
+    # for category in categories:
+    #      print(category)
 
-fetching_categories()
+# fetching_categories()
 
 
 # inserting into products
@@ -38,16 +39,16 @@ fetching_categories()
 
 
 # insert into categories
-def insert_categories():
-    cur.execute("insert into categories(categoryname,description)values('beef products','sausages and burgers')")
-    cur.execute("insert into categories(categoryname,description)values('agriculture products','flowers and fruits')")
-    cur.execute("insert into categories(categoryname,description)values('animal products','skin and bones')")
-    conn.commit()
+# def insert_categories():
+#     cur.execute("insert into categories(categoryname,description)values('beef products','sausages and burgers')")
+#     cur.execute("insert into categories(categoryname,description)values('agriculture products','flowers and fruits')")
+#     cur.execute("insert into categories(categoryname,description)values('animal products','skin and bones')")
+#     conn.commit()
 
-# insert_products()
-insert_categories()
-fetching_products()
-fetching_categories()
+# # insert_products()
+# insert_categories()
+# fetching_products()
+# fetching_categories()
 
 time=datetime.now()
 print(time)
@@ -90,6 +91,13 @@ product_values2=(3,56,'water','3 bottles','4500')
 # print("fetching data after modified func.\n",products)
 
 
+# INSERTING 2: TAKE VALUES AS PARAMETERS
+def insert_categories(values):
+    insert="insert into products(categoryName,description)values(%s,%s)"
+    cur.execute(insert,values)
+    conn.commit()
+
+
 # INSERTING METHOD 2: STILL TAKES VALUES AS PARAMETERES BUT DOES NOT USE PLACEHOLDERS
 # Intead we replace placeholders with {value} parameters in a formatted string
 def insert_products_method_two(values):
@@ -115,19 +123,19 @@ def insert_data(table,columns,values):
     conn.commit()
 
 # repeatable method when one wants to insert data in another table or insert different values
-table='products'
-columns="supplierid,categoryid,productname,unit,price"
-values=(3,2,'milo','2 tins','789')
-insert_data(table,columns,values)
-products=fetch_data('products')
-print("data from last method:\n",products)
+# table='products'
+# columns="supplierid,categoryid,productname,unit,price"
+# values=(3,2,'milo','2 tins','789')
+# # insert_data(table,columns,values)
+# products=fetch_data('products')
+# print("data from last method:\n",products)
 
-table='categories'
-columns='categoryname,description'
-values=('alcoholic drinks','smirn off, hennesy, vodka')
-insert_data(table,columns,values)
-categories=fetch_data('categories')
-print("practising my method:\n",categories)
+# table='categories'
+# columns='categoryname,description'
+# values=('alcoholic drinks','smirn off, hennesy, vodka')
+# insert_data(table,columns,values)
+# categories=fetch_data('categories')
+# print("practising my method:\n",categories)
 
 
 

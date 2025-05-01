@@ -26,6 +26,7 @@
                     <a class="nav-link" href="/">Home</a>
                     <a class="nav-link active" aria-current="page" href="/products">Products</a>
                     <a class="nav-link" href="/categories">Categories</a>
+                    <a class="nav-link" href="/task">Task</a>
 
                 </div>
             </div>
@@ -33,6 +34,64 @@
     </nav>
 
     <h1>This is my Products Page</h1>
+
+
+    <!-- <p>{{products}}</p> -->
+
+    <div class="div">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">productID</th>
+                    <th scope="col">supplierID</th>
+                    <th scope="col">CategoryID</th>
+                    <th scope="col">ProductName</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+
+                    <td>{{product[0]}}</td>
+                    <td>{{product[1]}}</td>
+                    <td>{{product[2]}}</td>
+                    <td>{{product[3]}}</td>
+                    <td>{{product[4]}}</td>
+                    <td>{{product[5]}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <form action="/add_products" method="post">
+        <div class="md-3">
+            <label for="exampleInputEmail1" class="form-label">supplierID</label>
+            <input type="number" class="form-control" name="SID" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">CategoryID</label>
+            <input type="number" class="form-control" name="CID" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">ProductName</label>
+            <input type="text" class="form-control" name="ProductName" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Unit</label>
+            <input type="name" class="form-control" name="Unit" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Price</label>
+            <input type="name" class="form-control" name="Price" id="exampleInputPassword1">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 </body>

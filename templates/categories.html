@@ -26,6 +26,7 @@
                     <a class="nav-link" href="/">Home</a>
                     <a class="nav-link" href="/products">Products</a>
                     <a class="nav-link active" aria-current="page" href="/categories">Categories</a>
+                    <a class="nav-link" href="/task">Task</a>
 
                 </div>
             </div>
@@ -33,6 +34,52 @@
     </nav>
 
     <h1>This is my Categories Page</h1>
+    <!-- <p>{{categories}}</p> -->
+
+
+    <div class="div">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">CategoryID</th>
+                <th scope="col">CategoryName</th>
+                <th scope="col">Description</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+              <tr>
+                
+                <td>{{categories[0]}}</td>
+                <td>{{categories[1]}}</td>
+                <td>{{categories[2]}}</td>
+                
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+    </div>
+
+
+    <form action="/add_categories" method="post">
+        <div class="md-3">
+            <label for="exampleInputEmail1" class="form-label">CategoryID</label>
+            <input type="text" class="form-control" name="CID" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="md-3">
+            <label for="exampleInputEmail1" class="form-label">CategoryName</label>
+            <input type="text" class="form-control" name="CN" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Description</label>
+            <input type="text" class="form-control" name="Desc" id="exampleInputPassword1">
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 
 </body>
